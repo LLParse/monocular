@@ -52,10 +52,10 @@ const chartsServiceStub = {
             "icons": [
               {
                 "name": "160x160-fit",
-                "path": "/assets/incubator/test/4.16.0/logo-160x160-fit.png"
+                "path": "assets/incubator/test/4.16.0/logo-160x160-fit.png"
               }
             ],
-            "readme": "/assets/incubator/test/4.16.0/README.md",
+            "readme": "assets/incubator/test/4.16.0/README.md",
             "urls": [
               "https://kubernetes-charts-incubator.storage.googleapis.com/test-4.16.0.tgz"
             ],

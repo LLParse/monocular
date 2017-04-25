@@ -36,7 +36,7 @@ export class ChartDetailsUsageComponent implements OnInit {
     this.config = config;
     mdIconRegistry
       .addSvgIcon('content-copy',
-        sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/content-copy.svg'));
+        sanitizer.bypassSecurityTrustResourceUrl('assets/icons/content-copy.svg'));
   }
 
   ngOnInit() {}

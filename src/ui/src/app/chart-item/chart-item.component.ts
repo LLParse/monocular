@@ -42,7 +42,7 @@ export class ChartItemComponent implements OnInit {
     if (icons !== undefined && icons.length > 0) {
       return this.config.backendHostname + icons.find(icon => icon.name === '160x160-fit').path;
     } else {
-      return '/assets/images/placeholder.png';
+      return 'assets/images/placeholder.png';
     }
   }
 }

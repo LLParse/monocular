@@ -37,10 +37,10 @@ export class HeaderBarComponent implements OnInit {
     // Set the icon
     mdIconRegistry
       .addSvgIcon('menu',
-        sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/menu.svg'))
+        sanitizer.bypassSecurityTrustResourceUrl('assets/icons/menu.svg'))
     mdIconRegistry
       .addSvgIcon('close',
-        sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/close.svg'))
+        sanitizer.bypassSecurityTrustResourceUrl('assets/icons/close.svg'))
   }
   ngOnInit() { }
 

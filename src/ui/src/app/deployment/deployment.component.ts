@@ -32,7 +32,7 @@ export class DeploymentComponent implements OnInit {
     icons.forEach(icon => {
       mdIconRegistry
         .addSvgIcon(icon,
-          sanitizer.bypassSecurityTrustResourceUrl(`/assets/icons/${icon}.svg`));
+          sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`));
     });
   }
 
