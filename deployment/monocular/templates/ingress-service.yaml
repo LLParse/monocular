@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-ingress
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  type: {{ .Values.ingress.service.type }}
+  ports:
+  - port: {{ .Values.ingress.service.port }}
+    protocol: TCP
+    name: {{ .Values.ingress.service.name }}
+  selector:
+    app: {{ template "fullname" . }}-ingress

@@ -18,17 +18,17 @@ spec:
         image: "{{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}"
         imagePullPolicy: {{ .Values.api.image.pullPolicy }}
         ports:
-        - containerPort: {{ .Values.api.service.internalPort }}
+        - containerPort: {{ .Values.api.service.port }}
         livenessProbe:
           httpGet:
             path: /healthz
-            port: {{ .Values.api.service.internalPort }}
+            port: {{ .Values.api.service.port }}
           initialDelaySeconds: 60
           timeoutSeconds: 10
         readinessProbe:
           httpGet:
             path: /healthz
-            port: {{ .Values.api.service.internalPort }}
+            port: {{ .Values.api.service.port }}
           initialDelaySeconds: 30
           timeoutSeconds: 5
         volumeMounts:

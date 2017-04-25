@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-ingress
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+spec:
+  replicas: {{ .Values.ingress.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}-ingress
+      annotations:
+        checksum/config: {{ print .Values.api.config | sha256sum }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.ingress.image.repository }}:{{ .Values.ingress.image.tag }}"
+        imagePullPolicy: {{ .Values.ingress.image.pullPolicy }}
+        command: ["/bin/sh", "-c", "envsubst < /usr/share/nginx/html/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+        ports:
+        - containerPort: {{ .Values.ingress.service.port }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.ingress.service.port }}
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.ingress.service.port }}
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        volumeMounts:
+          - name: config
+            mountPath: /usr/share/nginx/html
+        resources:
+{{ toYaml .Values.ingress.resources | indent 12 }}
+      volumes:
+      - name: config
+        configMap:
+          name: {{ template "fullname" . }}-ingress-config
